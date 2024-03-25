@@ -26,10 +26,11 @@ void print_help(char *program_name) {
 
 unsigned int array_from_stdin(int array[], unsigned int max_size) {
 
+    FILE *file = stdin;
     unsigned int size;
 
     printf("Ingrese el Tamaño del Arreglo: ");
-    scanf("%u", &size);
+    fscanf(file, "%u", &size);
 
     if (size > max_size) {
         printf("ERROR! El Tamaño es Superior al Permitido (100000).\n");
@@ -39,7 +40,7 @@ unsigned int array_from_stdin(int array[], unsigned int max_size) {
     printf("Ingrese los Valores del Arreglo.\n");
     for (unsigned int i = 0; i < size; i++) {
         printf("a[%d]=", i);
-        scanf("%d", &array[i]);
+        fscanf(file, "%d", &array[i]);
     }
     
     printf("Datos Recolectados con Exito.\n");
@@ -48,12 +49,14 @@ unsigned int array_from_stdin(int array[], unsigned int max_size) {
 }
 
 void array_dump(int a[], unsigned int length) {
+    FILE *file = stdout;
+
     printf("[");
     for (unsigned int i = 0; i < length; i++) {
         if (i>0) {
             printf(",");
         }
-        printf("%d", a[i]);
+        fprintf(file, "%d", a[i]);
     }
     printf("]\n\n");
 }

@@ -1,6 +1,6 @@
 #include <stdio.h>    /* printf()...          */
-#include <stdbool.h>  /* bool, true, false... */
 #include <stdlib.h>   /* EXIT_SUCCESS... */
+#include <stdbool.h>  /* bool, true, false... */
 
 int main(void) {
     bool b1, b2;
