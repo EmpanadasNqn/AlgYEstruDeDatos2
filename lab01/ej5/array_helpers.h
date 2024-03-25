@@ -1,4 +1,6 @@
-#ifndef mybool
+#ifndef ARRAY_HELPERS_H
+#define ARRAY_HELPERS_H
+
 #include "mybool.h"
 
 unsigned int array_from_file(int array[], unsigned int max_size, const char *filepath); 

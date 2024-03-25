@@ -71,5 +71,6 @@ int main(int argc, char *argv[]) {
 }
 
 /* COMENTARIO RESPUESTA PREGUNTA 5
--La compilacion falla en la parte de la refinicion de typedef de mybool
--El problema se resuelve con */
+-La compilacion falla en la parte de la refinicion de typedef de mybool, ya que
+se incluye #include "mybool.h" en main.c y en array_helpers.h.
+-El problema se resuelve agregando ifndef en los dos *.h. */

@@ -58,7 +58,7 @@ void array_dump(int a[], unsigned int length) {
         }
         fprintf(file, "%d", a[i]);
     }
-    printf("]\n\n");
+    printf("]\n");
 }
 
 

@@ -1,8 +1,8 @@
 /* First, the standard lib includes, not alphabetically ordered */
 #include <assert.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "array_helpers.h"
 
 /* Maximum allowed length of the array */
@@ -54,7 +54,18 @@ int main(int argc, char *argv[]) {
     /* parse the file to fill the array and obtain the actual length */
     unsigned int length = array_from_file(array, MAX_SIZE, filepath);
     
-    /* dumping the array */
+    /* invert the array */
+    unsigned int i, j;
+    i = 0;
+    j = length - 1;
+    while (i < j){
+        array_swap(array, i, j);
+        i = i + 1;
+        j = j - 1;
+    }
+
+    /* dumping the invert array */
+    printf("Arreglo invertido.\n");
     array_dump(array, length);
 
     /* create a boolean to see if it's sorted */
@@ -69,7 +80,3 @@ int main(int argc, char *argv[]) {
     
     return EXIT_SUCCESS;
 }
-
-/* COMENTARIO RESPUESTA PREGUNTA 3.
-En la compilacion con gcc no se le pasa array_helpers.h como parametro ya
-que lo incluimos al principio del main con #include "array_helpers.h" */
