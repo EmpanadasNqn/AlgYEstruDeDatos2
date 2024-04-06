@@ -26,10 +26,10 @@ bool fstring_eq(fixstring s1, fixstring s2) {
 }
 
 bool fstring_less_eq(fixstring s1, fixstring s2) {
-    bool menorIgual = false;
-    if (fstring_length(s1) <= fstring_length(s2)){
-        menorIgual = true;
-    }
-    return menorIgual;
-}
+    unsigned int i = 0;
 
+    while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i]){
+        i++;
+    }
+    return s1[i] <= s2[i];
+}
