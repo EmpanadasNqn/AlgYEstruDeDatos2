@@ -72,6 +72,5 @@ int main(int argc, char *argv[]) {
   return EXIT_SUCCESS;
 }
 
-/* La funcion goes_before() implementa la realcion de que el valor absoluto de 
-un numero venga antes que otro. Usa el criterio numerico, de menor a mayor y de
-valor absoluto. */
+/* La funcion goes_before() implementa la relacion de comparacion abs(x) >= abs(y).
+Usa el criterio numerico, de menor a mayor y de valor absoluto. */
