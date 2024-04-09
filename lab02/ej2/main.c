@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
     /* parse the filepath given in command line arguments */
     filepath = parse_filepath(argc, argv);
-    
+
     /* create an array of MAX_SIZE elements */
     int array[MAX_SIZE];
 
