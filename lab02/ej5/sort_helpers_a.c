@@ -8,10 +8,7 @@
 #include "fixstring.h"
 
 void swap(fixstring a[], unsigned int i, unsigned int j) {
-    fixstring aux;
-    fstring_set(aux, a[i]);
-    fstring_set(a[i], a[j]);
-    fstring_set(a[j], aux);
+    fstring_swap(a[i], a[j]);
 }
 
 bool goes_before(fixstring x, fixstring y) {

@@ -16,11 +16,13 @@ static unsigned int partition(int a[], unsigned int izq, unsigned int der) {
 
     while (i <= j) {
         if (goes_before(a[i],a[ppiv])) {
-            i = i + 1u;
+            i++;
         } else if (goes_before(a[ppiv],a[j])) {
-            j = j - 1u;
-        } else if (goes_before(a[ppiv],a[i]) && goes_before(a[j],a[ppiv])) {
+            j--;
+        } else {
             swap(a,i,j);
+            i++;
+            j--;
         }
     }
     swap(a,ppiv,j);

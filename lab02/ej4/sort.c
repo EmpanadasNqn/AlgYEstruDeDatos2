@@ -29,7 +29,7 @@ static void insert(int a[], unsigned int i) {
     unsigned int j = i;
     while (j > 0 && goes_before(a[j], a[j - 1])){
         swap(a, (j - 1), j);
-        j = j - 1;
+        j--;
     }
 }
 
@@ -48,11 +48,13 @@ static unsigned int partition(int a[], unsigned int izq, unsigned int der) {
 
     while (i <= j) {
         if (goes_before(a[i],a[ppiv])) {
-            i = i + 1u;
+            i++;
         } else if (goes_before(a[ppiv],a[j])) {
-            j = j - 1u;
-        } else if (goes_before(a[ppiv],a[i]) && goes_before(a[j],a[ppiv])) {
+            j--;
+        } else {
             swap(a,i,j);
+            i++;
+            j--;
         }
     }
     swap(a,ppiv,j);

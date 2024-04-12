@@ -6,24 +6,26 @@
 
 unsigned int fstring_length(fixstring s) {
     unsigned int l = 0;
-    while (l < FIXSTRING_MAX){
-        if (s[l] == '\0'){
-            break;
-        }
-        l = l + 1;
+    while (l < FIXSTRING_MAX && s[l] != '\0'){
+        l++;
     }
-    return l;  
+    return l;   
 }
 
 bool fstring_eq(fixstring s1, fixstring s2) {
-    bool igual = true;
-    for (int i = 0; i < FIXSTRING_MAX; i++){
-        if (s1[i] != s2[i] || fstring_length(s1) != fstring_length(s2)){
-            igual = false;
-            break;
+    unsigned int l1 = fstring_length(s1);
+    unsigned int l2 = fstring_length(s2);
+    
+    if (l1 != l2 || l1 > FIXSTRING_MAX){
+        return false;
+    }
+
+    for (unsigned int i = 0u; i < l1; i++){
+        if (s1[i] != s2[i]){
+            return false;
         }
     }
-    return igual;
+    return true;
 }
 
 bool fstring_less_eq(fixstring s1, fixstring s2) {
