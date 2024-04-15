@@ -9,25 +9,44 @@ static void dump(char a[], unsigned int length) {
         printf("%c", a[j]);
     }
     printf("\"");
-    printf("\n\n");
+    printf("\n");
 }
 
 unsigned int data_from_file(const char *path, unsigned int indexes[], char letters[], unsigned int max_size) {
     
     unsigned int length = 0u;
-    FILE *file = fopen(path, "r");
+    char format[MAX_SIZE];
+    FILE *file = NULL;
+    file = fopen(path, "r");
 
-    //Problema con Bordes && Problema con Indices muy grande en archivos
+    if (file == NULL) {
+        printf("Error! Archivo No Existe.\n");
+        exit(EXIT_FAILURE);
+    }
+    
     while (length < max_size && feof(file) == 0){
-        fscanf(file, "%u -> ", &indexes[length]);
-        fscanf(file, "*%c*", &letters[length]);
-        length++;
-
-        if (ferror(file) != 0){
-            printf("Error de Lectura.\n");
-            clearerr(file);
-            return 0u;
+        
+        fscanf(file, "%u %c%c %c%c%c", &indexes[length], &format[0], &format[1], &format[2], &letters[length], &format[3]);
+        
+        if(format[0] != '-' || format[1] != '>' || format[2] != '*' || format[3] != '*'){
+            printf("Error! Formato del Archivo No Valido.\n");
+            exit(EXIT_FAILURE);
         }
+
+
+
+        if (indexes[length] >= max_size){
+            printf("Error! Indice del Archivo Supera Max Size=%u.\n",max_size);
+            exit(EXIT_FAILURE);
+        }
+        
+        if (ferror(file) != 0){
+            printf("Error! de Lectura.\n");
+            clearerr(file);
+            exit(EXIT_FAILURE);
+        }
+        
+        length++;
     }
  
     fclose(file);
@@ -54,19 +73,20 @@ char *parce_filepath(int argc, char *argv[]) {
 
 int main(int argc, char *argv[]) {
     const char *filePath = parce_filepath(argc, argv);
-    FILE *file = fopen(filePath, "r");
-
     unsigned int indexes[MAX_SIZE];
     char letters[MAX_SIZE];
     char sorted[MAX_SIZE];
 
     unsigned int length = data_from_file(filePath, indexes, letters, MAX_SIZE); 
     
+    if (length == 0u){
+        return EXIT_FAILURE;
+    }
+    
     sort_letters(indexes, letters, sorted, length);
 
     dump(sorted, length);
 
-    fclose(file);
     return EXIT_SUCCESS;
 }
 
