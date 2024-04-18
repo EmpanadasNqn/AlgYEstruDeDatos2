@@ -48,7 +48,7 @@ void precips_maxs_mensuales(WeatherTable a, month_t maxs[YEARS]) {
             for (unsigned int d = 0; d < DAYS; d++) {
                 sum_prec = sum_prec + a[y][m][d]._rainfall;
             }
-            if (max < sum_prec) {
+            if (max <= sum_prec) {
                 max = sum_prec;
                 mes = m;
             }
