@@ -47,4 +47,15 @@ void array_dump(WeatherTable a);
  */
 void array_from_file(WeatherTable a, const char *filepath);
 
+
+/**
+ * @brief Checks if k_year, k_month, k_day is between the definitions
+ *
+ * @param k_year year readed from file
+ * @param k_month month readed from file
+ * @param k_day day readed from file
+ * 
+ * @return Boolean true if they are between the interval, false otherwise
+ */
+bool year_month_day_between_defines(unsigned int k_year, unsigned int k_month, unsigned int k_day);
 #endif

@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 
     /* parse the filepath given in command line arguments */
     filepath = parse_filepath(argc, argv);
-
+    
     /* create an array with the type of tclimate */
     WeatherTable array;
 

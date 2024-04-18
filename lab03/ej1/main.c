@@ -15,7 +15,7 @@ static void dump(char a[], unsigned int length) {
 unsigned int data_from_file(const char *path, unsigned int indexes[], char letters[], unsigned int max_size) {
     
     unsigned int length = 0u;
-    char format[MAX_SIZE];
+    char format[4];
     FILE *file = NULL;
     file = fopen(path, "r");
 
@@ -32,8 +32,6 @@ unsigned int data_from_file(const char *path, unsigned int indexes[], char lette
             printf("Error! Formato del Archivo No Valido.\n");
             exit(EXIT_FAILURE);
         }
-
-
 
         if (indexes[length] >= max_size){
             printf("Error! Indice del Archivo Supera Max Size=%u.\n",max_size);
