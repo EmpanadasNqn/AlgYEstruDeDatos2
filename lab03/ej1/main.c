@@ -15,7 +15,6 @@ static void dump(char a[], unsigned int length) {
 unsigned int data_from_file(const char *path, unsigned int indexes[], char letters[], unsigned int max_size) {
     
     unsigned int length = 0u;
-    char format[4];
     FILE *file = NULL;
     file = fopen(path, "r");
 
@@ -26,14 +25,14 @@ unsigned int data_from_file(const char *path, unsigned int indexes[], char lette
     
     while (length < max_size && feof(file) == 0){
         
-        fscanf(file, "%u %c%c %c%c%c", &indexes[length], &format[0], &format[1], &format[2], &letters[length], &format[3]);
+        int res = fscanf(file, "%u -> *%c*\n", &indexes[length], &letters[length]);
         
-        if(format[0] != '-' || format[1] != '>' || format[2] != '*' || format[3] != '*'){
+        if(res != 2){
             printf("Error! Formato del Archivo No Valido.\n");
             exit(EXIT_FAILURE);
         }
 
-        if (indexes[length] >= max_size){
+        if (indexes[length] > max_size){
             printf("Error! Indice del Archivo Supera Max Size=%u.\n",max_size);
             exit(EXIT_FAILURE);
         }
@@ -48,7 +47,7 @@ unsigned int data_from_file(const char *path, unsigned int indexes[], char lette
     }
  
     fclose(file);
-    return length - 1;
+    return length;
 }
 
 void sort_letters(unsigned int indexes[], char letters[], char sorted[], unsigned int length) {
