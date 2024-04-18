@@ -1,4 +1,5 @@
 #include <limits.h>
+
 #include "weather_utils.h"
 
 int temp_min(WeatherTable a) {
@@ -17,9 +18,11 @@ int temp_min(WeatherTable a) {
 }
 
 void temps_maxs_totales(WeatherTable a, int maxs[YEARS]) {
-    int max = INT_MIN;
+    int max;
 
     for (unsigned int year = 0; year < YEARS; year++) {
+        
+        max = INT_MIN;
         for (month_t m = january; m < MONTHS; m++) {
             for (unsigned int d = 0; d < DAYS; d++) {
                 if (max < a[year][m][d]._max_temp) {
@@ -31,19 +34,25 @@ void temps_maxs_totales(WeatherTable a, int maxs[YEARS]) {
     }    
 }
 
-void precips_maxs_mensuales(WeatherTable a, unsigned int maxs[YEARS]) {
+void precips_maxs_mensuales(WeatherTable a, month_t maxs[YEARS]) {
     unsigned int sum_prec = 0;
-    unsigned int max;
+    unsigned int max = 0;
+    month_t mes;
 
     for (unsigned int y = 0; y < YEARS; y++) {
+        
+        max = 0u;
         for (month_t m = january; m < MONTHS; m++) {
+            
+            sum_prec = 0;
             for (unsigned int d = 0; d < DAYS; d++) {
                 sum_prec = sum_prec + a[y][m][d]._rainfall;
             }
-            if (max ) {
-                
+            if (max < sum_prec) {
+                max = sum_prec;
+                mes = m;
             }
-            
         }
+        maxs[y] = mes;
     }
 }
