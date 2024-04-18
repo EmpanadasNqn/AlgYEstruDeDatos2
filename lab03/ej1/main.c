@@ -29,12 +29,12 @@ unsigned int data_from_file(const char *path, unsigned int indexes[], char lette
         
         if(res != 2){
             printf("Error! Formato del Archivo No Valido.\n");
-            exit(EXIT_FAILURE);
+            return 0u;
         }
 
         if (indexes[length] > max_size){
             printf("Error! Indice del Archivo Supera Max Size=%u.\n",max_size);
-            exit(EXIT_FAILURE);
+            return 0u;
         }
         
         if (ferror(file) != 0){
