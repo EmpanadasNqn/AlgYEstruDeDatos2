@@ -28,6 +28,30 @@ bool goes_before(player_t x, player_t y);
  */
 bool array_is_sorted(player_t atp[], unsigned int length);
 
+/**
+ * @brief Intercambia las posiciones de a[i] con a[j]
+ * @param[in] a Arreglo de Jugadores
+ * @param[in] i Posicion a ser reemplazada por j
+ * @param[in] j Posicion a ser reemplazada por i
+*/
+void swap(player_t a[], unsigned int i, unsigned int j);
+
+/**
+ * @brief Subdivide el Arreglo a en dos, dejando los elementos menores al pivote a su izquierda y los elementos mayores a la derecha. DE esa manera dejando al pivote en su posicion ordenada
+ * @param[in] a Arreglo de Jugadores
+ * @param[in] izq Posicion Izquierda del Arreglo
+ * @param[in] der Posicion Derecha del Arreglo
+ * @return La posicion Pivote, Que ya se Encuentra en su Posicion Ordenada
+*/
+unsigned int partition(player_t a[], unsigned int izq, unsigned int der);
+
+/**
+ * @brief Ordena el Arreglo usando la Funcion partition
+ * @param[in] a Arreglo de Jugadores
+ * @param[in] izq Posicion Izquierda del Arreglo
+ * @param[in] der Posicion Derecha del Arreglo
+*/
+void quick_sort_rec(player_t a[], unsigned int izq, unsigned int der);
 
 /**
  * @brief Sort the array 'a' using any sorting algorithm. The resulting sort 
