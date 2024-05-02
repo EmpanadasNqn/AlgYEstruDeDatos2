@@ -53,6 +53,9 @@ int main(void) {
     printf("m = (%d, %c)\n", m.age, m.name_initial);
     printf("a[1] = %d\n", a[1]);
 
+    /* Tiene sentido hacer un free(p) aca? */
+    free(p);
+
     return EXIT_SUCCESS;
 }
 

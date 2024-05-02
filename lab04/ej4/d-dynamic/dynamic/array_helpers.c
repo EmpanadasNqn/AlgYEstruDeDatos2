@@ -6,12 +6,12 @@
 
 
 void array_dump(int a[], size_t length) {
-    fprintf(stdout, "length: %u\n", length);
-    fprintf(stdout, "[ ");
+    fprintf(stdout, "length: %lu\n", length);
+    fprintf(stdout, "[");
     for (size_t i = 0u; i < length; ++i) {
         fprintf(stdout, "%d", a[i]);
         if (i < length - 1) {
-            fprintf(stdout, ", ");
+            fprintf(stdout, ",");
         }
     }
     fprintf(stdout, "]\n");
@@ -25,6 +25,7 @@ int * array_from_file(const char *filepath, size_t *length) {
         fprintf(stderr, "File does not exist.\n");
         exit(EXIT_FAILURE);
     }
+
     unsigned int i = 0u;
     unsigned int size = 0u;
     int res = 0;
@@ -33,12 +34,17 @@ int * array_from_file(const char *filepath, size_t *length) {
         fprintf(stderr, "Invalid array.\n");
         exit(EXIT_FAILURE);
     }
+
     int *array=NULL;
     //
     // COMPLETAR: - Reservar memoria para array
     //            - Cambiar el valor de *length para que contenga el tamaño del
     //              arreglo.
     //
+    array = malloc(size * sizeof(int)); 
+    /* Lo que hacemos es multiplicar el tamaño de espacio necesario para cada numero (4 bytes), por la cantidad de elementos/numeros que tiene el arreglo/archivo.in que le pasamos. */
+    *length = size;
+
     if (size > 0 && array == NULL) {
         fprintf(stderr, "Not enough memory\n");
         exit(EXIT_FAILURE);
@@ -51,6 +57,7 @@ int * array_from_file(const char *filepath, size_t *length) {
         }
        ++i;
     }
+
     fclose(file);
     return array;
 }

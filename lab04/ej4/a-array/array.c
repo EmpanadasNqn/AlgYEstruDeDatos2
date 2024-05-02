@@ -23,9 +23,9 @@ int main(void) {
     //
     // Se pueden agregar cosas antes del `for` de ser necesario
     //
+    p = arr;        // FIXED: Se usaba operador & (p = &arr[i]), y estaba dentro del bucle for (No es necesario que se lea en cada ciclo).
     for (unsigned int i=0u; i < ARRAY_SIZE; i++) {
-        p = &arr[i];  // FIXME: Se usa operador &
-        *p = 0;       // FIXME: Se usa operador *
+        p[i] = 0;       // FIXED: Se usaba operador * (*p = 0)
     }
     /* -------------------------------------------------------------------- */
     printf("after : ");

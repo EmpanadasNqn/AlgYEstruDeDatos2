@@ -20,13 +20,23 @@ int main(void) {
     printf("name-size  : %lu bytes\n"
            "age-size   : %lu bytes\n"
            "height-size: %lu bytes\n"
-           "data_t-size: %lu bytes\n", /* COMPLETAR */);
+           "data_t-size: %lu bytes\n\n", (uintptr_t) sizeof(messi.name), (uintptr_t) sizeof(messi.age), (uintptr_t) sizeof(messi.height), (uintptr_t) sizeof(messi));
+    /**
+     * La suma de los miembros no coincide con el total (38 != 40).
+     * El tamaño del campo name depende del tamaño fijo del arreglo (En este caso NAME_MAXSIZE = 30).
+    */
 
-    /*
-     *
-     * COMPLETAR
-     *
-     */
+    printf("name-mem-dir  : %lu bits\n"
+           "age-mem-dir   : %lu bits\n"
+           "height-mem-dir: %lu bits\n"
+           "data_t-mem-dir: %lu bits\n\n", (uintptr_t) &messi.name, (uintptr_t) &messi.age, (uintptr_t) &messi.height, (uintptr_t) &messi);
+    
+    printf("name-mem-dir  : %p hex\n"
+           "age-mem-dir   : %p hex\n"
+           "height-mem-dir: %p hex\n"
+           "data_t-mem-dir: %p hex\n\n", (void *) &messi.name, (void *) &messi.age, (void *) &messi.height, (void *) &messi);
+    /* Lo raro que encuentro en las direcciones de memoria son que la direccion de la estructura data_t (&messi) es la misma que la direccion que name (&messi.name). */
+    
     return EXIT_SUCCESS;
 }
 
