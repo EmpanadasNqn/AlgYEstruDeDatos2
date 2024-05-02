@@ -70,5 +70,5 @@ void sort(player_t a[], unsigned int length) {
 
 /**
  * Funciona mas rapido la version con punteros, ya que ahora los intercambios de
- * funcion swap se realizan mas rapido.
+ * funcion swap se realizan mas rapido, porque son punteros.
 */

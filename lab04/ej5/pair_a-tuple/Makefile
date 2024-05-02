@@ -1,27 +1,21 @@
 CFLAGS = -Wall -Wextra -Werror -pedantic -std=c99
 CFLAGS-SIN-WERROR = -Wall -Wextra -pedantic -std=c99
 
-SRC = *.c
+all: sort
 
-OBJS = $(SRC:.c=.o)
+main.o: main.c
+	gcc $(CFLAGS) -c main.c
 
-CNAME = sort #NOMBRE DEL ARCHIVO COMPILADO
+pair.o: pair.c
+	gcc $(CFLAGS) -c pair.c
 
-all: compilar
+sort: main.o pair.o
+	gcc $(CFLAGS) *.o -o $@
 
-objetos:
-	gcc $(CFLAGS) -c $(SRC)
-
-objetos-sin-Werror:
-	gcc $(CFLAGS-SIN-WERROR) -c $(SRC)
-
-compilar: objetos
-	gcc $(CFLAGS) $(OBJS) -o $(CNAME)
-
-compilar-sin-Werror: objetos-sin-Werror
-	gcc $(CFLAGS-SIN-WERROR) $(OBJS) -o $(CNAME)
+sort-sin-Werror: main.o pair.o
+	gcc $(CFLAGS-SIN-WERROR) *.o -o $@
 
 limpiar:
-	rm -f $(OBJS) $(CNAME)
+	rm -f *.o sort
 
 .PHONY: limpiar

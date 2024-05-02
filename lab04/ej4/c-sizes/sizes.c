@@ -20,16 +20,16 @@ int main(void) {
     printf("name-size  : %lu bytes\n"
            "age-size   : %lu bytes\n"
            "height-size: %lu bytes\n"
-           "data_t-size: %lu bytes\n\n", (uintptr_t) sizeof(messi.name), (uintptr_t) sizeof(messi.age), (uintptr_t) sizeof(messi.height), (uintptr_t) sizeof(messi));
+           "data_t-size: %lu bytes\n\n", sizeof(messi.name), sizeof(messi.age), sizeof(messi.height), sizeof(messi));
     /**
      * La suma de los miembros no coincide con el total (38 != 40).
      * El tamaño del campo name depende del tamaño fijo del arreglo (En este caso NAME_MAXSIZE = 30).
     */
 
-    printf("name-mem-dir  : %lu bits\n"
-           "age-mem-dir   : %lu bits\n"
-           "height-mem-dir: %lu bits\n"
-           "data_t-mem-dir: %lu bits\n\n", (uintptr_t) &messi.name, (uintptr_t) &messi.age, (uintptr_t) &messi.height, (uintptr_t) &messi);
+    printf("name-mem-dir  : %lu decimal\n"
+           "age-mem-dir   : %lu decimal\n"
+           "height-mem-dir: %lu decimal\n"
+           "data_t-mem-dir: %lu decimal\n\n", (uintptr_t) &messi.name, (uintptr_t) &messi.age, (uintptr_t) &messi.height, (uintptr_t) &messi);
     
     printf("name-mem-dir  : %p hex\n"
            "age-mem-dir   : %p hex\n"
