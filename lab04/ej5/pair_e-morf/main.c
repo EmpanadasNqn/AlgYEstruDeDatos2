@@ -25,3 +25,4 @@ int main(void) {
     return EXIT_SUCCESS;
 }
 
+/* La diferencia entra la especificacion anterior y esta, es que la anterior estaba implementada con el tipo INT, esta se abstrae de los tipos concretos para usar especificamente el tipo elem. Permitiendo un encapsulamiento mejor. */

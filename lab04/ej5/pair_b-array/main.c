@@ -25,3 +25,8 @@ int main(void) {
     q = pair_destroy(q);
     return EXIT_SUCCESS;
 }
+
+/**
+ * I. Falla ya que la funcion show_pair intentaba mostrar el p.fst y p.snd, pero la estructura no tenia esos valores.
+ * III. Este diseño de TAD no logra el encapsulamiento porque se debe utilizar los indices del arreglo para acceder a ellos, ademas esto queda claro al tener que haber cambiado las funciones para que funcione correctamente. De haber logrado el encampsulamiento este deberia haber funcionado con las funciones sin modificarlas.
+*/

@@ -29,6 +29,5 @@ pair_t pair_swapped(pair_t p) {
 }
 
 pair_t pair_destroy(pair_t p) {
-    p = pair_new(0,0);
     return p;
 }

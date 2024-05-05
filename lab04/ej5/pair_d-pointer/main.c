@@ -4,7 +4,7 @@
 
 static
 void show_pair(pair_t p) {
-    printf("(%d, %d)\n", p->fst, p->snd);
+    printf("(%d, %d)\n", pair_first(p), pair_second(p));
 }
 
 int main(void) {
@@ -25,4 +25,7 @@ int main(void) {
     return EXIT_SUCCESS;
 }
 
-/* Esta implementacion si logra encapsulamiento ya que solo interactuamos con el pair_t p creado adentro de las funciones. Y nunca con el s_pair_t. */
+/**
+ * Esta implementacion logra el encapsulamiento.
+ * Fallaba porque accediamos a los componentes de p a traves del puntero.
+*/
