@@ -54,7 +54,7 @@ int main(void) {
     printf("a[1] = %d\n", a[1]);
 
     /* Tiene sentido hacer un free(p) aca? */
-    free(p);
+    //free(p);
 
     return EXIT_SUCCESS;
 }
