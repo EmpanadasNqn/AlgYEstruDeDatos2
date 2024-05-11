@@ -3,7 +3,6 @@
 
 #include "strfuncs.h"
 
-
 int main(void) {
     char *some_str="h.o.l.a m.u.n.d.o.!";
     char *some_symmetric="abcba";
