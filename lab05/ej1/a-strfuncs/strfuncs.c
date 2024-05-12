@@ -14,7 +14,11 @@ size_t string_length(const char *str) {
 char *string_filter(const char *str, char c) {
     size_t longitud = string_length(str);
     size_t i = 0, j = 0;
-    char *str_ptr = malloc(sizeof(char) * longitud);
+    char *str_ptr = malloc(sizeof(char) * (longitud + 1));
+
+    if (str_ptr == NULL) {
+        return NULL;
+    }
 
     while (i < longitud) {
         if (str[i] != c) {
@@ -24,6 +28,8 @@ char *string_filter(const char *str, char c) {
         i++;
     }
     
+    str_ptr[j] = '\0';
+
     return str_ptr;
 }
 

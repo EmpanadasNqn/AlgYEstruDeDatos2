@@ -16,7 +16,7 @@ char *string_clone(const char *str, size_t length) {
 
 
 int main(void) {
-    char original[]=""
+    char *original=""
          "______ time ago in a galaxy far, far away...\n\n\n"
          ANSI_BRGOLD
          "         _______..___________.     ___      .______             \n"
@@ -57,7 +57,7 @@ int main(void) {
 
     char *copy=NULL;
 
-    copy = string_clone(original, sizeof(original)/sizeof(*original));
+    copy = string_clone(original, 1812);
     printf("Original:\n" ANSI_RED
             " %s\n", original);
     copy[0] = 'A';
@@ -74,6 +74,5 @@ int main(void) {
     return EXIT_SUCCESS;
 }
 
-/** El problema que encontre es que se guardaba en la memoria Stack dos veces el mismo mensaje. La solucion que le di fue reservar memoria en Global y guardar ahi el mensaje corregido.
- * El valor que toma el parametro length cuando se llama a string_clone() es 1812.
+/** El codigo no funciona de manera correcta con el cambio de tipo porque no ocupa la misma cantidad de memoria que la copia?. ocupa 1812 contra los 1820 de la copia?.
 */
