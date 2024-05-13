@@ -14,7 +14,6 @@ char *string_clone(const char *str, size_t length) {
     return output;
 }
 
-
 int main(void) {
     char original[]=""
          "______ time ago in a galaxy far, far away...\n\n\n"
