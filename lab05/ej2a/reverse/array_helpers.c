@@ -9,10 +9,9 @@ void array_dump(int a[], unsigned int length) {
         fprintf(stdout, "%d", a[i]);
         if (i < length - 1) {
             fprintf(stdout, ", ");
-        } else {
-            fprintf(stdout, "]\n");
         }
     }
+            fprintf(stdout, "]\n");
 }
 
 

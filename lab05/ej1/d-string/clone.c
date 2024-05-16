@@ -6,14 +6,10 @@
 #define MAX_LENGTH 1820
 
 char *string_clone(const char *str) {
-    char *clone=NULL;
-    /*
-     * COMPLETAR
-     *
-     */
-    return output;
+    char *clone = malloc(strlen(str) + 6); //Se puede usar directamente MAX_LENGTH o sumarle los 6 elementos modificados en le main a strlen(str)
+    clone = strcpy(clone, str);
+    return clone;
 }
-
 
 int main(void) {
     char original[]=""
@@ -33,6 +29,7 @@ int main(void) {
          "   \\    /\\    /     /  _____  \\  |  |\\  \\----..----)   |   \n"
          "    \\__/  \\__/     /__/     \\__\\ | _| `._____||_______/     \n"
          "\n\n\n"
+          ANSI_WHITE
          "                           Episode II \n\n"
          "                      ATTACK OF THE CLONES\n\n"
          "                There is  unrest in the Galactic\n"
@@ -52,7 +49,7 @@ int main(void) {
          "                on the critical issue of creating\n"
          "                an    ARMY    OF   THE   REPUBLIC\n"
          "                to    assist    the   overwhelmed\n"
-         "                Jedi....\n" ANSI_WHITE;
+         "                Jedi....\n";
     char *copy=NULL;
 
     copy = string_clone(original);
@@ -67,6 +64,7 @@ int main(void) {
     printf("Copia   :\n" ANSI_CYAN
            " %s\n", copy);
 
+    free(copy);
+
     return EXIT_SUCCESS;
 }
-
