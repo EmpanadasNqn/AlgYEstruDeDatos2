@@ -23,11 +23,10 @@ stack stack_push(stack s, stack_elem e) {
 /* Operations */
 
 stack stack_pop(stack s) {
-    if (!stack_is_empty(s)) {
-        stack s_aux = s;
-        s = s->next;
-        free(s_aux);        
-    }
+    assert(!stack_is_empty(s));
+    stack s_aux = s;
+    s = s->next;
+    free(s_aux);
     return s;
 }
 
@@ -54,7 +53,7 @@ stack_elem *stack_to_array(stack s) {               //El orden en el que los ord
     stack_elem *arr;
     stack s_aux = s;
     int contador = 0;
-    unsigned int size = stack_size(s);
+    const unsigned int size = stack_size(s);
 
     if (size == 0) {
         arr = NULL;

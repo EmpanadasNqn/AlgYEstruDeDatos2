@@ -7,7 +7,6 @@ int main(void) {
     stack s = stack_empty();
     stack_elem *arr = stack_to_array(s);
     s = stack_push(s, 1);
-    s = stack_push(s, 2);
     
     unsigned int size = stack_size(s);
     printf("Stack Size = %u\n\n",size);

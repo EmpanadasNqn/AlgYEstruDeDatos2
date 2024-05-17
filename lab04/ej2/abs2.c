@@ -21,11 +21,9 @@ int main(void) {
 }
 
 /**
- * El parametro int *y de absolute() es de tipo OUT ya que solo lo usamos para almacenar
- * el dato de x. No sacamos informacion de esa direccion de memoria.
+ * El parametro int *y de absolute() es de tipo IN/OUT ya que lo usamos para almacenar
+ * el dato de x. Y despues sacamos la informacion de esa direccion de memoria.
  * 
  * Los parametros IN serian funcion(int x); Los OUT serian funcion(int *x) si lo unico que
- * hacemos en la funcion es usar esa direccion para guardar algo; Los IN/OUT serian
- * funcion(int *x) Pero con la diferencia que accedemos a la direccion de memoria para
- * sacar algun dato y ademas despues guardamos y devolvemos datos en el puntero x.
+ * hacemos en la funcion es usar esa direccion para guardar algo.
 */
