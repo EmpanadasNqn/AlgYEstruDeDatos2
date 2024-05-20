@@ -53,8 +53,8 @@ bool stack_is_empty(stack s) {
 stack_elem *stack_to_array(stack s) {               //El orden en el que los ordena esta bien??
     stack_elem *arr;
     stack s_aux = s;
-    int contador = 0;
-    unsigned int size = stack_size(s);
+    int contador = stack_size(s);
+    unsigned int size = contador;
 
     if (size == 0) {
         arr = NULL;
@@ -65,7 +65,7 @@ stack_elem *stack_to_array(stack s) {               //El orden en el que los ord
     while (s_aux != NULL) {
         arr[contador] = s_aux->elem;
         s_aux = s_aux->next;
-        contador++;
+        contador--;
     }
     stack_destroy(s_aux);
     return arr;
