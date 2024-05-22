@@ -50,11 +50,11 @@ bool stack_is_empty(stack s) {
     return (s == NULL);
 }
 
-stack_elem *stack_to_array(stack s) {               //El orden en el que los ordena esta bien??
+stack_elem *stack_to_array(stack s) {
     stack_elem *arr;
     stack s_aux = s;
-    int contador = stack_size(s);
-    unsigned int size = contador;
+    unsigned int size = stack_size(s);
+    int contador = size - 1;
 
     if (size == 0) {
         arr = NULL;

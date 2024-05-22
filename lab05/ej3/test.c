@@ -39,10 +39,9 @@ int main(void) {
     for (unsigned int i = 0u; i < size; i++) {
         printf("%u ",arr[i]);
     }
-    printf("\n\n");
+    printf("\n");
     
     stack_destroy(s);
-    free(arr);
 
     return (EXIT_SUCCESS);
 }

@@ -23,7 +23,7 @@ stack stack_push(stack s, stack_elem e) {
     if (stack_is_empty(s)) {
         p->size = 1u;
     } else {
-        p->size = stack_size(s) + 1u;
+        p->size = s->size + 1u;
     }
     assert(p->size == stack_size(p));
     return p;
@@ -37,7 +37,7 @@ stack stack_pop(stack s) {
     stack s_aux = s;
     s = s->next;
     if (!stack_is_empty(s)) {
-        s->size = stack_size(s) - 1;
+        s->size = s->size - 1;
     }
     free(s_aux);
     assert(s == NULL || s->size == stack_size(s));
@@ -60,11 +60,11 @@ bool stack_is_empty(stack s) {
     return (s == NULL);
 }
 
-stack_elem *stack_to_array(stack s) {               //El orden en el que los ordena esta bien??
+stack_elem *stack_to_array(stack s) {
     stack_elem *arr;
     stack s_aux = s;
-    int contador = 0;
     unsigned int size = stack_size(s);
+    int contador = size - 1;
 
     if (size == 0) {
         arr = NULL;
@@ -75,7 +75,7 @@ stack_elem *stack_to_array(stack s) {               //El orden en el que los ord
     while (s_aux != NULL) {
         arr[contador] = s_aux->elem;
         s_aux = s_aux->next;
-        contador++;
+        contador--;
     }
     stack_destroy(s_aux);
     return arr;

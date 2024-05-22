@@ -9,21 +9,23 @@ struct _s_stack {
 };
 
 stack stack_empty(void) {
-    return NULL;
+    stack s = malloc(sizeof(struct _s_stack));
+    s->elems = NULL;
+    s->size = 0u;
+    s->capacity = 0u;
+    return s;
 }
 
 stack stack_push(stack s, stack_elem e) {
-    if (!stack_is_empty(s)) {
-        if (s->size >= s->capacity) {
-            s->elems = realloc(s->elems, sizeof(s->capacity) * 2);
-        }
-        s->elems[s->size] = e;
-        s->size = s->size + 1;
-    } else {
-        s->elems = malloc(sizeof(s->capacity)); //COrregir
-        s->elems[s->size] = e;
-        s->size = 0;
+    if (s->elems == NULL) {
+        s->capacity = 1u;
+        s->elems = malloc(sizeof(stack_elem));
+    } else if (s->size >= s->capacity) {
+            s->capacity = s->capacity * 2u;
+            s->elems = realloc(s->elems, sizeof(stack_elem) * s->capacity);
     }
+    s->elems[s->size] = e;
+    s->size = s->size + 1u;    
     return s;    
 }
 
@@ -34,27 +36,28 @@ stack stack_pop(stack s) {
 }
 
 unsigned int stack_size(stack s) {
-    if (stack_is_empty(s)) {
-        return 0u;
-    }
     return s->size;
 }
 
 stack_elem stack_top(stack s) {
     assert(!stack_is_empty(s));
-    return s->elems[s->size];
+    return s->elems[s->size - 1u];
 }
 
 bool stack_is_empty(stack s) {
-    return (s == NULL);
+    return (s->size == 0u);
 }
 
 stack_elem *stack_to_array(stack s) {
+    if (stack_is_empty(s)) {
+        return NULL;
+    }
     return s->elems;
 }
 
 stack stack_destroy(stack s) {
     free(s->elems);
+    s->elems = NULL;
     free(s);
     s = NULL;
     return s;

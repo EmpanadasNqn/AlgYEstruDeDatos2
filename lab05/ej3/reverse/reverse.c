@@ -55,19 +55,28 @@ int main(int argc, char *argv[]) {
   printf("Original: ");
   array_dump(array, length);
 
-  int *new_array=NULL;
+  stack_elem *new_array=NULL;
+  new_array = malloc(sizeof(stack_elem) * length);
+
+  /* Creamos una pila vacia */
   stack s = stack_empty();
 
-  for (unsigned int i = 0u; i < length; i++) {
+  /* Iteramos el arreglo de izq a der, insertando los numeros uno por uno en la pila */
+  for (unsigned int i = 0; i < length; i++) {
     s = stack_push(s, array[i]);
   }
   
-  new_array = stack_to_array(s);
+  /* Extraemos cada elemento de la pila y lo ponemos en el arreglo */
+  for (unsigned int i = 0; i < length; i++) {
+    new_array[i] = stack_top(s);
+    s = stack_pop(s);
+  }
+  
+  stack_destroy(s);
   
   printf("Reversed: ");
   array_dump(new_array, length);
 
-  stack_destroy(s);
   free(new_array);
   
   return (EXIT_SUCCESS);
