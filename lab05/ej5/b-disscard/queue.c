@@ -77,12 +77,33 @@ queue_elem queue_first(queue q) {
 
 queue queue_dequeue(queue q) {
     assert(invrep(q) && !queue_is_empty(q));
-    struct s_node * killme=q->first;
+    struct s_node *killme = q->first;
     q->first = q->first->next;
     killme = destroy_node(killme);
     assert(invrep(q));
     return q;
 
+}
+
+queue queue_disscard(queue q, unsigned int n) {
+    assert(invrep(q) && n < queue_size(q));
+    struct s_node *n_aux = q->first;
+
+    if (n == 0) {
+        q->first = q->first->next;
+        free(n_aux);
+    } else {
+        for (unsigned int i = 0; i < n - 1; i++) {
+            n_aux = n_aux->next;
+        }
+        struct s_node *to_remove = n_aux->next;
+        n_aux->next = to_remove->next;
+        free(to_remove);
+    }
+    
+    q->size--;
+    assert(invrep(q));
+    return q;
 }
 
 void queue_dump(queue q, FILE *file) {

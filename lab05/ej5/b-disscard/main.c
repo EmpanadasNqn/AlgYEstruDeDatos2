@@ -54,9 +54,18 @@ int main(int argc, char *argv[]) {
     queue q = queue_from_file(filepath);
     
     /*dumping the queue */
+    printf("Queue original\n");
     printf("length: %u\n", queue_size(q));
     queue_dump(q, stdout);
     
+    if (queue_size(q) > 0) {
+        q = queue_user_disscard(q);
+
+        printf("Queue modificada\n");
+        printf("length: %u\n", queue_size(q));
+        queue_dump(q, stdout);
+    }
+
     q = queue_destroy(q);
     
     return EXIT_SUCCESS;
