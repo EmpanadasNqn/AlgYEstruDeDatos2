@@ -10,7 +10,7 @@ struct s_pstack {
 
 struct s_node {
     pstack_elem elem;
-    unsigned int p;
+    priority_t p;
     struct s_node *next;
 };
 
