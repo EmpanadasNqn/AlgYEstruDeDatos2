@@ -29,7 +29,6 @@ char *string_filter(const char *str, char c) {
     }
     
     str_ptr[j] = '\0';
-
     return str_ptr;
 }
 

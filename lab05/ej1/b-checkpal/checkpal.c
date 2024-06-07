@@ -29,9 +29,7 @@ int main(void) {
 
     filtered = string_filter(user_input, ignore_chars[0]);
     for (unsigned int i=0; i < SIZEOF_ARRAY(ignore_chars); i++) {
-        char *p = filtered;
         filtered = string_filter(filtered, ignore_chars[i]);
-        free(p);
     }
 
     printf("El texto:\n\n"
@@ -39,7 +37,6 @@ int main(void) {
             "%s un palíndromo.\n\n", user_input, string_is_symmetric(filtered) ? "Es": "NO es");
 
     free(filtered);
-
     return EXIT_SUCCESS;
 }
 
