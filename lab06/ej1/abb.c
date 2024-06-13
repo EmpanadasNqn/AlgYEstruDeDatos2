@@ -19,10 +19,9 @@ static bool elem_less(abb_elem a, abb_elem b) {
 }
 
 static bool invrep(abb tree) {
-    /*
-     * Needs implementation
-     */
-    return true;
+    return tree == NULL || (tree->left == NULL || abb_max(tree->left) < tree->elem) 
+    && (tree->right == NULL || abb_min(tree->right) > tree->elem) 
+    && invrep(tree->left) && invrep(tree->right);
 }
 
 abb abb_empty(void) {
@@ -34,21 +33,18 @@ abb abb_empty(void) {
 abb abb_add(abb tree, abb_elem e) {
     assert(invrep(tree));
 
-    if (abb_tree(tree) == e) {
-        return tree;
-    }
-
-    if (abb_root(tree) < e && !abb_is_empty(tree->right)) {
-        tree = abb_add(tree->right,e);
-    } else if(abb_root(tree) > e && !abb_is_empty(tree->left)) {
-        tree = abb_add(tree->left,e);
-    } else {
+    if (abb_is_empty(tree)) {
         tree = malloc(sizeof(struct _s_abb));
         tree->right = NULL;
         tree->elem = e;
         tree->left = NULL;
+    } else {
+        if (elem_less(e, abb_root(tree))) {
+            tree->left = abb_add(tree->left, e);
+        } else if (elem_less(abb_root(tree), e)) {
+            tree->right = abb_add(tree->right, e);
+        }
     }
-        
 
     assert(invrep(tree) && abb_exists(tree, e));
     return tree;
