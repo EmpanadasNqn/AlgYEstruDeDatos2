@@ -102,7 +102,7 @@ abb abb_remove(abb tree, abb_elem e) {
                 free(tree);
                 tree = aux;
             } else {
-                 tree->elem = abb_min(tree->right);
+                tree->elem = abb_min(tree->right);
                 tree->right = abb_remove(tree->right, tree->elem);
             }
         }
@@ -111,7 +111,6 @@ abb abb_remove(abb tree, abb_elem e) {
     assert(invrep(tree) && !abb_exists(tree, e));
     return tree;
 }
-
 
 abb_elem abb_root(abb tree) {
     abb_elem root;
@@ -155,16 +154,20 @@ void abb_dump(abb tree, abb_ordtype ord) {
     assert(invrep(tree) && (ord==ABB_IN_ORDER  || 
                             ord==ABB_PRE_ORDER ||
                             ord==ABB_POST_ORDER));
-    /*
-     * c) Needs implementation: use the dump order indicated by `ord`
-     *
-     */
-
-    // Implementing in-order as default
     if (tree != NULL) {
-        abb_dump(tree->left, ord);
-        printf("%d ", tree->elem);
-        abb_dump(tree->right, ord);
+        if (ord == ABB_IN_ORDER) {
+            abb_dump(tree->left, ord);
+            printf("%d ", tree->elem);
+            abb_dump(tree->right, ord);
+        } else if (ord == ABB_PRE_ORDER) {
+            printf("%d ", tree->elem);
+            abb_dump(tree->left, ord);
+            abb_dump(tree->right, ord);
+        } else {
+            abb_dump(tree->left, ord);
+            abb_dump(tree->right, ord);
+            printf("%d ", tree->elem);
+        }
     }
 }
 
