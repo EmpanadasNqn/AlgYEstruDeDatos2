@@ -4,6 +4,7 @@
 
 #define ARRAY_SIZE 4
 
+
 struct bound_data {
     bool is_upperbound;
     bool is_lowerbound;
